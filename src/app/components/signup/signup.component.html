@@ -1,0 +1,40 @@
+<div class="row justify-content-center mb-3">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm">
+        <header class="signup-header">
+          <h1 class="welcome-text">Welcome</h1>
+          <h2 class="brand-name">PowerRent</h2>
+        </header>
+        <div class="card-body">
+          <p class="card-title text-center mb-4">Sign-Up to stay powered or
+            keep powering others.</p>
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="full_name" class="form-label">Full Name</label>
+              <input id="full_name" formControlName="full_name" type="text" class="form-control" [class.is-invalid]="signupForm.get('full_name')?.invalid && signupForm.get('full_name')?.touched">
+              <div *ngIf="signupForm.get('full_name')?.invalid && signupForm.get('full_name')?.touched" class="invalid-feedback">
+                Full name is required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input id="email" formControlName="email" type="email" class="form-control" [class.is-invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+              <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="invalid-feedback">
+                Valid email is required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input id="password" formControlName="password" type="password" class="form-control" [class.is-invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+              <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="invalid-feedback">
+                Password must be at least 6 characters
+              </div>
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+            <button type="submit" [disabled]="signupForm.invalid" class="btn btn-primary w-100 sign-up-button">Sign Up</button>
+          </form>
+          <p class="text-center mt-3 signin-prompt">Already have an account? <a href="/signin" class="text-primary signin-link">Sign In</a></p>
+        </div>
+      </div>
+    </div>
+  </div>

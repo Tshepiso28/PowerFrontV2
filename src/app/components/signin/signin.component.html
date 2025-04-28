@@ -1,0 +1,33 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm">
+      <header class="login-header">
+        <h1 class="welcome-text">Welcome Back</h1>
+        <h2 class="brand-name">PowerRent</h2>
+      </header>
+      <div class="card-body">
+        <p class="card-title text-center mb-4">Sign-in to stay powered or
+          keep powering others.</p>
+        <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" formControlName="email" type="email" class="form-control" [class.is-invalid]="signinForm.get('email')?.invalid && signinForm.get('email')?.touched">
+            <div *ngIf="signinForm.get('email')?.invalid && signinForm.get('email')?.touched" class="invalid-feedback">
+              Valid email is required
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" formControlName="password" type="password" class="form-control" [class.is-invalid]="signinForm.get('password')?.invalid && signinForm.get('password')?.touched">
+            <div *ngIf="signinForm.get('password')?.invalid && signinForm.get('password')?.touched" class="invalid-feedback">
+              Password is required
+            </div>
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+          <button type="submit" [disabled]="signinForm.invalid" class="btn btn-primary w-100 sign-in-button">Sign In</button>
+        </form>
+        <p class="text-center mt-3 signup-prompt">Don't have an account? <a href="/signup" class="text-primary signup-link">Sign Up</a></p>
+      </div>
+    </div>
+  </div>
+</div>

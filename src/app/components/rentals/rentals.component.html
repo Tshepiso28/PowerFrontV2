@@ -1,0 +1,20 @@
+<div class="mt-4">
+    <h2 class="h2 mb-4">Rentals</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let rental of rentals" class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title">{{ rental.name }}</h3>
+            <p class="card-text"><strong>Price:</strong> R{{ rental.rental_price_per_day }}</p>
+            <p class="card-text"><strong>Start Date:</strong> {{ rental.rental_start_date }}</p>
+            <p class="card-text"><strong>Status:</strong> {{ rental.status }}</p>
+            <p class="card-text"><strong>Type:</strong> {{ rental.product_type }}</p>
+            <p class="card-text"><strong>Serial:</strong> {{ rental.serial_number }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ rental.location }}</p>
+            <button *ngIf="rental.status === 'active'" (click)="cancelRental(rental.id)" class="btn btn-danger">Cancel Rental</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

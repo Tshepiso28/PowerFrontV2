@@ -1,0 +1,118 @@
+<div class="mt-4">
+    <h2 class="h2 mb-4">My Power Sources</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+  
+    
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h3 class="card-title mb-3">Add New Power Source</h3>
+        <form [formGroup]="addPanelForm" (ngSubmit)="onAddPanel()">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="name" class="form-label">Name</label>
+              <input id="name" formControlName="name" type="text" class="form-control" [class.is-invalid]="addPanelForm.get('name')?.invalid && addPanelForm.get('name')?.touched">
+              <div *ngIf="addPanelForm.get('name')?.invalid && addPanelForm.get('name')?.touched" class="invalid-feedback">
+                Name is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="rental_price_per_day" class="form-label">Price (R)</label>
+              <input id="rental_price_per_day" formControlName="rental_price_per_day" type="number" step="0.01" class="form-control" [class.is-invalid]="addPanelForm.get('rental_price_per_day')?.invalid && addPanelForm.get('rental_price_per_day')?.touched">
+              <div *ngIf="addPanelForm.get('rental_price_per_day')?.invalid && addPanelForm.get('rental_price_per_day')?.touched" class="invalid-feedback">
+                Valid price is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="product_type" class="form-label">Product Type</label>
+              <input id="product_type" formControlName="product_type" type="text" class="form-control" [class.is-invalid]="addPanelForm.get('product_type')?.invalid && addPanelForm.get('product_type')?.touched">
+              <div *ngIf="addPanelForm.get('product_type')?.invalid && addPanelForm.get('product_type')?.touched" class="invalid-feedback">
+                Product type is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="serial_number" class="form-label">Serial Number</label>
+              <input id="serial_number" formControlName="serial_number" type="text" class="form-control" [class.is-invalid]="addPanelForm.get('serial_number')?.invalid && addPanelForm.get('serial_number')?.touched">
+              <div *ngIf="addPanelForm.get('serial_number')?.invalid && addPanelForm.get('serial_number')?.touched" class="invalid-feedback">
+                Serial number is required
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="description" class="form-label">Description</label>
+              <textarea id="description" formControlName="description" class="form-control"></textarea>
+            </div>
+            <div class="col-12">
+              <label for="location" class="form-label">Location</label>
+              <input id="location" formControlName="location" type="text" class="form-control">
+            </div>
+          </div>
+          <button type="submit" [disabled]="addPanelForm.invalid" class="btn btn-primary mt-3 myBtn">Add Panel</button>
+        </form>
+      </div>
+    </div>
+  
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let panel of panels" class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <div *ngIf="editingPanelId !== panel.id">
+              <h3 class="card-title">{{ panel.name }}</h3>
+              <p class="card-text">{{ panel.description }}</p>
+              <p class="card-text"><strong>Price:</strong> R{{ panel.rental_price_per_day }}</p>
+              <p class="card-text"><strong>Available:</strong> {{ panel.is_available ? 'Yes' : 'No' }}</p>
+              <p class="card-text"><strong>Type:</strong> {{ panel.product_type }}</p>
+              <p class="card-text"><strong>Serial:</strong> {{ panel.serial_number }}</p>
+              <p class="card-text"><strong>Location:</strong> {{ panel.location }}</p>
+              <div class="d-flex gap-2">
+                <button (click)="startEdit(panel)" class="btn btn-warning">Edit</button>
+                <button (click)="deletePanel(panel.id)" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+            <div *ngIf="editingPanelId === panel.id">
+              <form [formGroup]="editPanelForm" (ngSubmit)="onEditPanel()">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label for="edit_name" class="form-label">Name</label>
+                    <input id="edit_name" formControlName="name" type="text" class="form-control">
+                  </div>
+                  <div class="col-12">
+                    <label for="edit_rental_price_per_day" class="form-label">Price (R)</label>
+                    <input id="edit_rental_price_per_day" formControlName="rental_price_per_day" type="number" step="0.01" class="form-control" [class.is-invalid]="editPanelForm.get('rental_price_per_day')?.invalid && editPanelForm.get('rental_price_per_day')?.touched">
+                    <div *ngIf="editPanelForm.get('rental_price_per_day')?.invalid && editPanelForm.get('rental_price_per_day')?.touched" class="invalid-feedback">
+                      Valid price is required
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="edit_product_type" class="form-label">Product Type</label>
+                    <input id="edit_product_type" formControlName="product_type" type="text" class="form-control">
+                  </div>
+                  <div class="col-12">
+                    <label for="edit_serial_number" class="form-label">Serial Number</label>
+                    <input id="edit_serial_number" formControlName="serial_number" type="text" class="form-control">
+                  </div>
+                  <div class="col-12">
+                    <label for="edit_description" class="form-label">Description</label>
+                    <textarea id="edit_description" formControlName="description" class="form-control"></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label for="edit_location" class="form-label">Location</label>
+                    <input id="edit_location" formControlName="location" type="text" class="form-control">
+                  </div>
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input id="edit_is_available" formControlName="is_available" type="checkbox" class="form-check-input">
+                      <label for="edit_is_available" class="form-check-label">Available</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <button type="submit" class="btn btn-primary myBtn">Save</button>
+                  <button type="button" (click)="editingPanelId = null" class="btn btn-secondary">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

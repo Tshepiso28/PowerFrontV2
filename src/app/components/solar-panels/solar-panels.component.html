@@ -1,0 +1,19 @@
+<div class="mt-4">
+    <h2 class="h2 mb-4">Available Power Source</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let panel of panels" class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title">{{ panel.name }}</h3>
+            <p class="card-text">{{ panel.description }}</p>
+            <p class="card-text"><strong>Price:</strong> R{{ panel.rental_price_per_day }}</p>
+            <p class="card-text"><strong>Type:</strong> {{ panel.product_type }}</p>
+            <p class="card-text"><strong>Serial:</strong> {{ panel.serial_number }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ panel.location }}</p>
+            <button (click)="rentPanel(panel.id)" class="btn btn-primary myBtn">Rent</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
