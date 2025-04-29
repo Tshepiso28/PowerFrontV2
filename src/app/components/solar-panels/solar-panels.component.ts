@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SolarPanelService } from '../../services/solar-panel.service';
 import { RentalService } from '../../services/rental.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-solar-panels',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './solar-panels.component.html',
   styleUrl: './solar-panels.component.scss'
 })

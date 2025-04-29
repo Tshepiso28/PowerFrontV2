@@ -19,6 +19,28 @@ export class SolarPanelService {
     throw new Error((await response.json()).message);
   }
 
+  async getSolarPanelById(panelId: number): Promise<any> {
+    if (!panelId || isNaN(panelId) || panelId <= 0) {
+      throw new Error('Invalid panel ID - must be a positive number');
+    }
+
+    const response = await fetch(`${this.apiUrl}/solar-panels/${panelId}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      throw new Error(errorData?.message || 'Failed to fetch panel details');
+    }
+
+    return response.json();
+  }
+
+
   async getOwnedPanels(): Promise<any> {
     const response = await fetch(`${this.apiUrl}/solar-panels/owned`, {
       headers: {

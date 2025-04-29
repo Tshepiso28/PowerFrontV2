@@ -1,0 +1,52 @@
+<div class="panel-detail-container">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading panel details...</p>
+    </div>
+  
+    <!-- Error State -->
+    <div *ngIf="error && !isLoading" class="error-state">
+      <div class="error-icon">!</div>
+      <h3>Error Loading Panel</h3>
+      <p>{{ error }}</p>
+      <button class="back-button">
+        Back to Solar Panels
+      </button>
+    </div>
+  
+    <!-- Success State -->
+    <div *ngIf="solarPanel && !isLoading && !error" class="panel-details">
+      <h2>{{ solarPanel.name }}</h2>
+      
+      <div class="detail-row">
+        <span class="label">Description:</span>
+        <span class="value">{{ solarPanel.description }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="label">Price:</span>
+        <span class="value">R{{ solarPanel.rental_price_per_day }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="label">Owner:</span>
+        <span class="value">{{ solarPanel.owner_name }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="label">Status:</span>
+        <span class="value" [class.available]="solarPanel.is_available" 
+                            [class.unavailable]="!solarPanel.is_available">
+          {{ solarPanel.is_available ? 'Available' : 'Unavailable' }}
+        </span>
+      </div>
+  
+      <button [routerLink]="['/solar-panels']" routerLinkActive="router-link-active"   class="back-button">
+        Back
+      </button>
+      
+    </div>
+  </div>
+  
+

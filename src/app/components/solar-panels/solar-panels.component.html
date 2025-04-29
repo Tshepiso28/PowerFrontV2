@@ -11,7 +11,11 @@
             <p class="card-text"><strong>Type:</strong> {{ panel.product_type }}</p>
             <p class="card-text"><strong>Serial:</strong> {{ panel.serial_number }}</p>
             <p class="card-text"><strong>Location:</strong> {{ panel.location }}</p>
-            <button (click)="rentPanel(panel.id)" class="btn btn-primary myBtn">Rent</button>
+            <div class="d-flex justify-content-center gap-2"> 
+            <button (click)="rentPanel(panel.id)" class="btn btn-primary myBtnR">Rent</button>
+            <button [routerLink]="['/solar-panels', panel.id]" class="btn btn-secondary myBtn">view</button>
+            </div>
+            
           </div>
         </div>
       </div>
