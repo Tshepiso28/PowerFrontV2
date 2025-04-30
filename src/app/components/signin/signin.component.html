@@ -1,11 +1,11 @@
 <div class="row justify-content-center mb-3">
-  <div class="col-md-6 col-lg-4">
-    <div class="card shadow-sm">
+  <div class="col-md-6 col-lg-4 div-main">
+    <div class="main">
       <header class="login-header">
-        <h1 class="welcome-text">Welcome Back</h1>
+        <h1 class="welcome-text">Welcome Back To 👋</h1>
         <h2 class="brand-name">PowerRent</h2>
       </header>
-      <div class="card-body">
+      <div class="card-body form-div">
         <p class="card-title text-center mb-4">Sign-in to stay powered or
           keep powering others.</p>
         <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
@@ -24,7 +24,8 @@
             </div>
           </div>
           <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
-          <button type="submit" [disabled]="signinForm.invalid" class="btn btn-primary w-100 sign-in-button">Sign In</button>
+          <div class="d-flex justify-content-center"><button type="submit" [disabled]="signinForm.invalid" class="btn btn-primary w-100 sign-in-button">Sign In</button></div>
+          
         </form>
         <p class="text-center mt-3 signup-prompt">Don't have an account? <a href="/signup" class="text-primary signup-link">Sign Up</a></p>
       </div>

@@ -1,21 +1,18 @@
 <div class="panel-detail-container">
-    <!-- Loading State -->
     <div *ngIf="isLoading" class="loading-state">
       <div class="spinner"></div>
       <p>Loading panel details...</p>
     </div>
   
-    <!-- Error State -->
     <div *ngIf="error && !isLoading" class="error-state">
       <div class="error-icon">!</div>
       <h3>Error Loading Panel</h3>
       <p>{{ error }}</p>
       <button class="back-button">
-        Back to Solar Panels
+        Back
       </button>
     </div>
   
-    <!-- Success State -->
     <div *ngIf="solarPanel && !isLoading && !error" class="panel-details">
       <h2>{{ solarPanel.name }}</h2>
       

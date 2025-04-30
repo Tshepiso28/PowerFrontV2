@@ -26,7 +26,7 @@ export class SolarPanelsComponent implements OnInit {
         this.panels = panels;
       })
       .catch(error => {
-        this.errorMessage = error.message || 'Failed to load solar panels';
+        this.errorMessage = error.message || 'Failed to load Power Sources';
       });
   }
 
@@ -35,9 +35,9 @@ export class SolarPanelsComponent implements OnInit {
       .then(response => {
         if (response.status === 201) {
           this.loadPanels();
-          alert('Solar panel rented successfully!');
+          alert('Power Source rented successfully!');
         } else {
-          this.errorMessage = response.message || 'Failed to rent solar panel';
+          this.errorMessage = response.message || 'Failed to rent Power Source';
         }
       })
       .catch(error => {

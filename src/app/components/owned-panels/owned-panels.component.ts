@@ -47,7 +47,7 @@ export class OwnedPanelsComponent implements OnInit {
         this.panels = panels;
       })
       .catch(error => {
-        this.errorMessage = error.message || 'Failed to load owned panels';
+        this.errorMessage = error.message || 'Failed to load owned Power Source';
       });
   }
 
@@ -58,9 +58,9 @@ export class OwnedPanelsComponent implements OnInit {
           if (response.status === 201) {
             this.loadPanels();
             this.addPanelForm.reset();
-            alert('Solar panel added successfully!');
+            alert('Power Source added successfully!');
           } else {
-            this.errorMessage = response.message || 'Failed to add solar panel';
+            this.errorMessage = response.message || 'Failed to add Power Source';
           }
         })
         .catch(error => {
@@ -82,9 +82,9 @@ export class OwnedPanelsComponent implements OnInit {
             this.loadPanels();
             this.editingPanelId = null;
             this.editPanelForm.reset();
-            alert('Solar panel updated successfully!');
+            alert('Power Source updated successfully!');
           } else {
-            this.errorMessage = response.message || 'Failed to update solar panel';
+            this.errorMessage = response.message || 'Failed to update Power Source';
           }
         })
         .catch(error => {
@@ -94,14 +94,14 @@ export class OwnedPanelsComponent implements OnInit {
   }
 
   deletePanel(panelId: number): void {
-    if (confirm('Are you sure you want to delete this panel?')) {
+    if (confirm('Are you sure you want to delete this Power Source?')) {
       this.solarPanelService.deleteSolarPanel(panelId)
         .then(response => {
           if (response.status === 200) {
             this.loadPanels();
-            alert('Solar panel deleted successfully!');
+            alert('Power Source deleted successfully!');
           } else {
-            this.errorMessage = response.message || 'Failed to delete solar panel';
+            this.errorMessage = response.message || 'Failed to delete Power Source';
           }
         })
         .catch(error => {

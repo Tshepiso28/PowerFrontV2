@@ -43,7 +43,7 @@ export class ViewItemComponent {
       this.solarPanel = await this.solarPanelService.getSolarPanelById(+this.panelId);
       this.error = null;
     } catch (error: any) {
-      this.error = error.message || 'Failed to load panel details';
+      this.error = error.message || 'Failed to load Power Source details';
       console.error('Error:', error);
     } finally {
       this.isLoading = false;

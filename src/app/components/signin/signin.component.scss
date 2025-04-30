@@ -40,6 +40,14 @@
       max-width: 640px;
     }
   }
+
+  .div-main{
+    padding: 0px !important;
+  }
+
+  .form-div{
+    padding: 20px;
+  }
   
   .login-header {
     width: 100%;
@@ -165,7 +173,7 @@
   }
   
   .form-input {
-    width: 100%;
+    width: 80%;
     height: 40px;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
