@@ -24,6 +24,9 @@ export class AuthService {
       body: JSON.stringify(data)
     });
     const json = await response.json();
+    if (json.access_token) {
+      localStorage.setItem('access_token', json.access_token);
+    }
     return { ...json, status: response.status };
   }
 }

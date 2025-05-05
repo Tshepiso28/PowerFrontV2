@@ -7,12 +7,14 @@ import { RentalsComponent } from './components/rentals/rentals.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SplashComponent } from './components/splash/splash.component';
 import { ViewItemComponent } from './components/view-item/view-item.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 export const routes: Routes = [
     { path: 'splash', component: SplashComponent},
     { path: 'signup', component: SignupComponent },
     { path: 'signin', component: SigninComponent },
+    {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
     { path:  'solar-panels/:id', component: ViewItemComponent},
     { path: 'solar-panels', component: SolarPanelsComponent, canActivate: [AuthGuard] },
     { path: 'owned-panels', component: OwnedPanelsComponent, canActivate: [AuthGuard] },
