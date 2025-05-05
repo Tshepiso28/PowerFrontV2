@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { SplashComponent } from './components/splash/splash.component';
 import { ViewItemComponent } from './components/view-item/view-item.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path:  'solar-panels/:id', component: ViewItemComponent},
     { path: 'solar-panels', component: SolarPanelsComponent, canActivate: [AuthGuard] },
     { path: 'owned-panels', component: OwnedPanelsComponent, canActivate: [AuthGuard] },
+    { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
     { path: 'rentals', component: RentalsComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: '/splash', pathMatch: 'full' },
     { path: '**', redirectTo: '/splash' } 
